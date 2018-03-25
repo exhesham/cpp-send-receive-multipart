@@ -4,17 +4,6 @@
  *  Created on: Feb 17, 2016
  *      Author: hesham
  */
-/*
- UNIX Daemon Server Programming Sample Program
- Levent Karakas <levent at mektup dot at> May 2001
-
- To compile:	cc -o exampled examped.c
- To run:		./exampled
- To test daemon:	ps -ef|grep exampled (or ps -aux on BSD systems)
- To test log:	tail -f /tmp/exampled.log
- To test signal:	kill -HUP `cat /tmp/exampled.lock`
- To terminate:	kill `cat /tmp/exampled.lock`
- */
 #include <stdio.h>
 #include <cstdlib>
 #include <fcntl.h>
@@ -58,38 +47,6 @@ void *get_in_addr_(struct sockaddr *sa)
 }
 int listen_for_uploads(void);
 
-void mountFlashDrive() {
-	const string fname="mountFlashDrive";
-	return;
-//	PRNT_LOG("Called");
-//	int num_of_devices = atoi(CONF["homecloud_server.mount.num_of_devices"].c_str());
-//	for(int i =1;i<= num_of_devices;i++){
-//		PRNT_LOG("Mounting drive:" << CONF["homecloud_server.mount.source." + SSTR(i)] << " to:" <<CONF["homecloud_server.mount.target." + SSTR(i)]);
-//		if (mount(CONF["homecloud_server.mount.source." + SSTR(i)].c_str(),
-//				CONF["homecloud_server.mount.target." + SSTR(i)].c_str(),
-//				CONF["homecloud_server.mount.filesystemtype." + SSTR(i)].c_str(),
-//				MS_NOATIME, NULL)) {
-//			if (errno == EBUSY) {
-//				PRNT_LOG("Mountpoint busy...seems to be already connected!");
-//				return;
-//			} else {
-//				PRNT_LOG("Mount error: " << strerror(errno));
-//				exit(0);
-//			}
-//		} else {
-//			PRNT_LOG("Mount successful");
-//		}
-//	}
-}
-void umountFlashDrive() {
-	const string fname="umountFlashDrive";
-	int num_of_devices = atoi(CONF["homecloud_server.mount.num_of_devices"].c_str());
-	for(int i =1;i<= num_of_devices;i++){
-		int status;
-		status = umount(CONF["homecloud_server.mount.target." + SSTR(i)].c_str());
-		PRNT_LOG("USB unmounting "<< CONF["homecloud_server.mount.target." + SSTR(i)] << " - status = "<< strerror(errno));
-	}
-}
 
 int listen_for_uploads(void)
 {
